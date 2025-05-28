@@ -71,6 +71,7 @@ public class Bowtie
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(BowtieItems.MANURE);
+            event.accept(BowtieItems.ANTLER);
         }
 
     }
