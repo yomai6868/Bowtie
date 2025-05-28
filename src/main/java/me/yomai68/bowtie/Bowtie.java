@@ -34,6 +34,9 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import javax.naming.directory.ModificationItem;
+import me.yomai68.bowtie.item.BowtieItems;
+
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(Bowtie.MODID)
 public class Bowtie
@@ -52,6 +55,8 @@ public class Bowtie
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
 
+        BowtieItems.register(modEventBus);
+
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
@@ -64,6 +69,9 @@ public class Bowtie
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
+        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            event.accept(BowtieItems.MANURE);
+        }
 
     }
 
